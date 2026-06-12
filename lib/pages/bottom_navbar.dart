@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryapp/pages/account_page.dart';
 import 'package:fooddeliveryapp/pages/favorites_page.dart';
 import 'package:fooddeliveryapp/pages/home_page.dart';
 
@@ -12,22 +13,13 @@ class BottomNavbar extends StatefulWidget {
 class _BottomNavbarState extends State<BottomNavbar> {
   int _selectedIndex = 0;
 
-  List<Widget> bodyOptions = [
-    HomePage(),
-    FavoritesPage(),
-    Center(child: Text("Person")),
-  ];
+  List<Widget> bodyOptions = [HomePage(), FavoritesPage(), AccountPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: bodyOptions[_selectedIndex],
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("Foodics - Food Delivery"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text("Foodics - Food Delivery")),
       drawer: Drawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -44,6 +36,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             _selectedIndex = value;
           }),
         },
+        selectedItemColor: Theme.of(context).primaryColor,
       ),
     );
   }

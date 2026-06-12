@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
 
 class FoodItem extends StatefulWidget {
-  final ProductItemModel food;
-  const FoodItem({super.key, required this.food});
+  final int foodIndex;
+  const FoodItem({super.key, required this.foodIndex});
 
   @override
   State<FoodItem> createState() => _FoodItemState();
@@ -26,7 +26,7 @@ class _FoodItemState extends State<FoodItem> {
             Stack(
               children: [
                 Image.network(
-                  widget.food.imgUrl,
+                  foods[widget.foodIndex].imgUrl,
                   height: 100,
                   errorBuilder: (context, error, stackTrace) =>
                       Icon(Icons.broken_image, size: 60, color: Colors.grey),
@@ -36,12 +36,16 @@ class _FoodItemState extends State<FoodItem> {
                     child: InkWell(
                       onTap: () {
                         setState(() {
+                          foods[widget.foodIndex] = foods[widget.foodIndex]
+                              .copyWith(isFavorite: !isFavorite);
                           isFavorite = !isFavorite;
                         });
                       },
                       child: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: Colors.deepOrange,
+                        foods[widget.foodIndex].isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     width: 30,
@@ -57,11 +61,11 @@ class _FoodItemState extends State<FoodItem> {
             ),
             const SizedBox(height: 8),
             Text(
-              widget.food.name,
+              foods[widget.foodIndex].name,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             Text(
-              '\$${widget.food.price}',
+              '\$${foods[widget.foodIndex].price}',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

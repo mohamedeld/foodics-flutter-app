@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisSpacing: 10,
               ),
               itemCount: foods.length,
-              itemBuilder: (context, index) => FoodItem(food: foods[index]),
+              itemBuilder: (context, index) => FoodItem(foodIndex: index),
             ),
           ],
         ),

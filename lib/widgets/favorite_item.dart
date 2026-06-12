@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
 
 class FavoriteItem extends StatelessWidget {
-  final ProductItemModel foodItem;
-  const FavoriteItem({super.key, required this.foodItem});
+  // ✅ No longer needs to be Stateful
+  final ProductItemModel food; // ✅ Receives the object directly
+  final VoidCallback onUnfavorite;
+
+  const FavoriteItem({
+    super.key,
+    required this.food,
+    required this.onUnfavorite,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class FavoriteItem extends StatelessWidget {
         child: Row(
           children: [
             Image.network(
-              foodItem.imgUrl,
+              food.imgUrl,
               height: 75,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) =>
@@ -25,22 +32,31 @@ class FavoriteItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    foodItem.name,
+                    food.name,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    "\$${foodItem.price}",
+                    "\$${food.price}",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Colors.deepOrange,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            Icon(Icons.favorite),
+            IconButton(
+              onPressed: () {
+                final targetedIndex = foods.indexOf(food);
+                foods[targetedIndex] = foods[targetedIndex].copyWith(
+                  isFavorite: false,
+                );
+                onUnfavorite(); // ✅ Tells parent to rebuild with updated list
+              },
+              icon: Icon(Icons.favorite, color: Theme.of(context).primaryColor),
+            ),
           ],
         ),
       ),
