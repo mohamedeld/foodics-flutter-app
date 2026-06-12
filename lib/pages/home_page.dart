@@ -12,21 +12,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              "assets/images/classic_burger.jpg",
-              height: 200,
-              fit: BoxFit.cover,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                "assets/images/classic_burger.jpg",
+                height: size.height * 0.23,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(height: 32),
-          Expanded(
-            child: GridView.builder(
+            const SizedBox(height: 32),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
@@ -35,8 +38,8 @@ class _HomePageState extends State<HomePage> {
               itemCount: foods.length,
               itemBuilder: (context, index) => FoodItem(food: foods[index]),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

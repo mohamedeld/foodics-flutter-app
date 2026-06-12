@@ -4,6 +4,7 @@ class ProductItemModel {
   final double price;
   final String id;
   final String categoryId;
+  final bool isFavorite;
 
   ProductItemModel({
     required this.name,
@@ -11,6 +12,7 @@ class ProductItemModel {
     required this.price,
     required this.id,
     required this.categoryId,
+    this.isFavorite = false,
   });
 }
 
@@ -22,6 +24,7 @@ List<ProductItemModel> foods = [
         'https://www.freepnglogos.com/uploads/burger-png/download-hamburger-burger-png-image-png-image-pngimg-15.png',
     price: 8.5,
     categoryId: '1',
+    isFavorite: true,
   ),
   ProductItemModel(
     id: 'burger 2',
@@ -29,6 +32,7 @@ List<ProductItemModel> foods = [
     imgUrl: 'https://www.pngarts.com/files/3/Chicken-Burger-PNG-Photo.png',
     price: 8.5,
     categoryId: '1',
+    isFavorite: true,
   ),
   ProductItemModel(
     id: 'burger 3',
@@ -36,6 +40,7 @@ List<ProductItemModel> foods = [
     imgUrl: 'https://www.pngarts.com/files/3/Chicken-Burger-PNG-Photo.png',
     price: 8,
     categoryId: '1',
+    isFavorite: false,
   ),
   ProductItemModel(
     id: 'pizza 1',
@@ -44,6 +49,7 @@ List<ProductItemModel> foods = [
         'https://graficsea.com/wp-content/uploads/2021/12/Chicken-Supreme-Pizza-.png',
     price: 9,
     categoryId: '2',
+    isFavorite: false,
   ),
   ProductItemModel(
     id: 'pasta 1',
@@ -52,6 +58,7 @@ List<ProductItemModel> foods = [
         'https://www.pngall.com/wp-content/uploads/2018/04/Pasta-PNG-Image.png',
     price: 7,
     categoryId: '3',
+    isFavorite: false,
   ),
   ProductItemModel(
     id: 'pasta 2',
@@ -60,6 +67,7 @@ List<ProductItemModel> foods = [
         'https://www.pngall.com/wp-content/uploads/2018/04/Pasta-PNG-Image.png',
     price: 7,
     categoryId: '4',
+    isFavorite: true,
   ),
   ProductItemModel(
     id: 'pasta 3',
@@ -68,6 +76,7 @@ List<ProductItemModel> foods = [
         'https://www.pngall.com/wp-content/uploads/2018/04/Pasta-PNG-Image.png',
     price: 7,
     categoryId: '5',
+    isFavorite: false,
   ),
   ProductItemModel(
     id: 'pasta 4',
@@ -76,5 +85,6 @@ List<ProductItemModel> foods = [
         'https://www.pngall.com/wp-content/uploads/2018/04/Pasta-PNG-Image.png',
     price: 7,
     categoryId: '6',
+    isFavorite: true,
   ),
 ];
