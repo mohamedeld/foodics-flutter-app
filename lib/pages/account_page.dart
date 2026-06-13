@@ -21,9 +21,11 @@ class AccountPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16),
-          const Text(
+          Text(
             "Mohamed Elrfaay",
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
           SizedBox(height: 16),
           Row(

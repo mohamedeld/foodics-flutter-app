@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+
       theme: ThemeData(
+        fontFamily: 'OpenSans',
         primaryColor: Colors.deepOrange,
         scaffoldBackgroundColor: Colors.grey[100],
         appBarTheme: AppBarTheme(
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
           elevation: 0,
         ),
+        textTheme: TextTheme(),
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: BottomNavbar(),

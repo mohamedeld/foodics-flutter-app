@@ -62,7 +62,11 @@ class _FoodItemState extends State<FoodItem> {
             const SizedBox(height: 8),
             Text(
               foods[widget.foodIndex].name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'OpenSans',
+              ),
             ),
             Text(
               '\$${foods[widget.foodIndex].price}',
