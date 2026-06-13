@@ -13,11 +13,14 @@ class ItemTapped extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return ListTile(
       title: Text("$title"),
       leading: Icon(
         leadingIcon,
-        size: 30,
+        size: isLandScape ? size.height * 0.08 : size.height * 0.03,
         color: Theme.of(context).primaryColor,
       ),
       subtitle: subTitle != null ? Text("$subTitle") : null,

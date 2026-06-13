@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
 import 'package:fooddeliveryapp/widgets/food_item.dart';
 
@@ -13,6 +15,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -22,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 "assets/images/classic_burger.jpg",
-                height: size.height * 0.23,
+                height: isLandScape ? size.height * 0.7 : size.height * 0.23,
                 fit: BoxFit.cover,
               ),
             ),
@@ -31,9 +35,13 @@ class _HomePageState extends State<HomePage> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                crossAxisCount: isLandScape ? 3 : 2,
+                mainAxisSpacing: isLandScape
+                    ? size.height * 0.08
+                    : size.height * 0.012,
+                crossAxisSpacing: isLandScape
+                    ? size.height * 0.08
+                    : size.height * 0.012,
               ),
               itemCount: foods.length,
               itemBuilder: (context, index) => FoodItem(foodIndex: index),

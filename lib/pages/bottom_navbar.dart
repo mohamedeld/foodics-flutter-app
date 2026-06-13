@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fooddeliveryapp/pages/account_page.dart';
 import 'package:fooddeliveryapp/pages/favorites_page.dart';
 import 'package:fooddeliveryapp/pages/home_page.dart';
@@ -16,27 +18,40 @@ class _BottomNavbarState extends State<BottomNavbar> {
   List<Widget> bodyOptions = [HomePage(), FavoritesPage(), AccountPage()];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: bodyOptions[_selectedIndex],
-      backgroundColor: Colors.white,
-      appBar: AppBar(title: const Text("Foodics - Food Delivery")),
-      drawer: Drawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorite",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Person"),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (value) => {
-          setState(() {
-            _selectedIndex = value;
-          }),
-        },
-        selectedItemColor: Theme.of(context).primaryColor,
+    final PreferredSizeWidget? appBar;
+    if (Platform.isAndroid) {
+      appBar = AppBar(title: const Text("Foodics - Food Delivery"));
+    } else if (Platform.isIOS) {
+      appBar = CupertinoNavigationBar(
+        middle: Text("Foodics - Food Delivery"),
+        leading: Drawer(),
+      );
+    } else {
+      appBar = null;
+    }
+    return SafeArea(
+      child: Scaffold(
+        body: bodyOptions[_selectedIndex],
+        backgroundColor: Colors.white,
+        appBar: AppBar(title: const Text("Foodics - Food Delivery")),
+        drawer: Drawer(),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: "Favorite",
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Person"),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: (value) => {
+            setState(() {
+              _selectedIndex = value;
+            }),
+          },
+          selectedItemColor: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }

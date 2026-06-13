@@ -14,6 +14,9 @@ class FavoriteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,8 +24,9 @@ class FavoriteItem extends StatelessWidget {
           children: [
             Image.network(
               food.imgUrl,
-              height: 75,
-              fit: BoxFit.cover,
+              height: isLandScape ? size.height * 0.2 : size.height * 0.1,
+              width: size.width * 0.2,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) =>
                   Icon(Icons.broken_image, size: 60, color: Colors.grey),
             ),
