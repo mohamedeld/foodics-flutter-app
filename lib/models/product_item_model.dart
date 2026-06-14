@@ -6,7 +6,7 @@ class ProductItemModel {
   final String categoryId;
   final bool isFavorite;
 
-  ProductItemModel({
+  const ProductItemModel({
     required this.name,
     required this.imgUrl,
     required this.price,

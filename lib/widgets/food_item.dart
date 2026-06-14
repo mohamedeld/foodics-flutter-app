@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
+import 'package:fooddeliveryapp/widgets/food_item_favorite.dart';
 
-class FoodItem extends StatefulWidget {
+class FoodItem extends StatelessWidget {
   final int foodIndex;
-  const FoodItem({super.key, required this.foodIndex});
+  FoodItem({super.key, required this.foodIndex});
 
-  @override
-  State<FoodItem> createState() => _FoodItemState();
-}
-
-class _FoodItemState extends State<FoodItem> {
   bool isFavorite = false;
 
   @override
@@ -33,7 +29,7 @@ class _FoodItemState extends State<FoodItem> {
                 children: [
                   Center(
                     child: Image.network(
-                      foods[widget.foodIndex].imgUrl,
+                      foods[foodIndex].imgUrl,
                       height: constraints.maxHeight * 0.55,
                       errorBuilder: (context, error, stackTrace) => Icon(
                         Icons.broken_image,
@@ -42,31 +38,10 @@ class _FoodItemState extends State<FoodItem> {
                       ),
                     ),
                   ),
-                  Align(
-                    child: Container(
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            foods[widget.foodIndex] = foods[widget.foodIndex]
-                                .copyWith(isFavorite: !isFavorite);
-                            isFavorite = !isFavorite;
-                          });
-                        },
-                        child: Icon(
-                          foods[widget.foodIndex].isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      width: constraints.maxWidth * 0.2,
-                      height: constraints.maxHeight * 0.2,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[400],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    alignment: Alignment.topRight,
+                  FoodItemFavorite(
+                    foodIndex: foodIndex,
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
                   ),
                 ],
               ),
@@ -75,7 +50,7 @@ class _FoodItemState extends State<FoodItem> {
                 height: constraints.maxHeight * 0.2,
                 child: FittedBox(
                   child: Text(
-                    foods[widget.foodIndex].name,
+                    foods[foodIndex].name,
                     style: TextStyle(
                       fontSize: textScale.scale(20),
                       fontWeight: FontWeight.w600,
@@ -85,7 +60,7 @@ class _FoodItemState extends State<FoodItem> {
                 ),
               ),
               Text(
-                '\$${foods[widget.foodIndex].price}',
+                '\$${foods[foodIndex].price}',
                 style: TextStyle(
                   fontSize: textScale.scale(20),
                   fontWeight: FontWeight.bold,

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
+import 'package:fooddeliveryapp/pages/food_details_page.dart';
 import 'package:fooddeliveryapp/widgets/food_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,7 +45,21 @@ class _HomePageState extends State<HomePage> {
                     : size.height * 0.012,
               ),
               itemCount: foods.length,
-              itemBuilder: (context, index) => FoodItem(foodIndex: index),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetailsPage(
+                            foodItem: foods[index],
+                            foodIndex: index,
+                          ),
+                        ),
+                      )
+                      .then((value) => setState(() {}));
+                },
+                child: FoodItem(foodIndex: index),
+              ),
             ),
           ],
         ),

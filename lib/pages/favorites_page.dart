@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
+import 'package:fooddeliveryapp/pages/food_details_page.dart';
 import 'package:fooddeliveryapp/widgets/favorite_item.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -40,9 +41,21 @@ class _FavoritesPageState extends State<FavoritesPage> {
       padding: const EdgeInsets.all(16),
       itemCount: favoriteFoods.length,
       // ✅ Pass the food object, not the index
-      itemBuilder: (context, index) => FavoriteItem(
-        food: favoriteFoods[index],
-        onUnfavorite: () => setState(() {}), // ✅ Triggers parent rebuild
+      itemBuilder: (context, index) => InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => FoodDetailsPage(
+                foodItem: favoriteFoods[index],
+                foodIndex: index,
+              ),
+            ),
+          );
+        },
+        child: FavoriteItem(
+          food: favoriteFoods[index],
+          onUnfavorite: () => setState(() {}), // ✅ Triggers parent rebuild
+        ),
       ),
     );
   }

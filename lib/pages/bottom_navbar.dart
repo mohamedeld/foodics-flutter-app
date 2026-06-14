@@ -12,8 +12,28 @@ class BottomNavbar extends StatefulWidget {
   State<BottomNavbar> createState() => _BottomNavbarState();
 }
 
-class _BottomNavbarState extends State<BottomNavbar> {
+class _BottomNavbarState extends State<BottomNavbar>
+    with WidgetsBindingObserver {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // TODO: implement didChangeAppLifecycleState
+    super.didChangeAppLifecycleState(state);
+    debugPrint(state.toString());
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Widget> bodyOptions = [HomePage(), FavoritesPage(), AccountPage()];
   @override
