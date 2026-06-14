@@ -48,15 +48,19 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
                   Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage(
-                            foodItem: foods[index],
-                            foodIndex: index,
-                          ),
-                        ),
+                      .pushNamed(
+                        '/food-details',
+                        arguments: {
+                          'foodIndex': index,
+                          'foodItem': foods[index],
+                        },
                       )
-                      .then((value) => setState(() {}));
+                      .then(
+                        (value) => {
+                          debugPrint(value.toString()),
+                          setState(() {}),
+                        },
+                      );
                 },
                 child: FoodItem(foodIndex: index),
               ),

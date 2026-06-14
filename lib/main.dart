@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryapp/pages/account_page.dart';
 import 'package:fooddeliveryapp/pages/bottom_navbar.dart';
+import 'package:fooddeliveryapp/pages/favorites_page.dart';
+import 'package:fooddeliveryapp/pages/food_details_page.dart';
+import 'package:fooddeliveryapp/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +32,11 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: BottomNavbar(),
+      routes: {
+        '/food-details': (context) => FoodDetailsPage(),
+        'favorites': (context) => FavoritesPage(),
+        '/account': (context) => AccountPage(),
+      },
     );
   }
 }

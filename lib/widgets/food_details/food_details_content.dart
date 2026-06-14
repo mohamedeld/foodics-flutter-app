@@ -61,43 +61,6 @@ class FoodDetailsContent extends StatelessWidget {
             ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 32),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "\$${foodItem.price}",
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: size.height * 0.05,
-                  child: ElevatedButton(
-                    onPressed: () {},
-
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: Text(
-                      "Checkout",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
         ],
       ),
     );
