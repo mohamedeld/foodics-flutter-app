@@ -7,6 +7,7 @@ import 'package:fooddeliveryapp/widgets/food_item_favorite.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   FoodDetailsPage({super.key});
+  static const String routeName = "/food-details";
 
   @override
   Widget build(BuildContext context) {

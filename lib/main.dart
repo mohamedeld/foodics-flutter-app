@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BottomNavbar(),
       routes: {
-        '/food-details': (context) => FoodDetailsPage(),
+        FoodDetailsPage.routeName: (context) => FoodDetailsPage(),
         'favorites': (context) => FavoritesPage(),
         '/account': (context) => AccountPage(),
       },

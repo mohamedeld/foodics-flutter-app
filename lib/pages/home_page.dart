@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fooddeliveryapp/models/category_item.dart';
 import 'package:fooddeliveryapp/models/product_item_model.dart';
 import 'package:fooddeliveryapp/pages/food_details_page.dart';
 import 'package:fooddeliveryapp/widgets/food_item.dart';
@@ -29,6 +30,32 @@ class _HomePageState extends State<HomePage> {
                 "assets/images/classic_burger.jpg",
                 height: isLandScape ? size.height * 0.7 : size.height * 0.23,
                 fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              height: size.height * 0.13,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+
+                itemBuilder: (context, index) => Container(
+                  width: size.width * 0.15,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Image.asset(categories[index].imgPath),
+                        const SizedBox(height: 6),
+                        Text(categories[index].title, style: TextStyle()),
+                      ],
+                    ),
+                  ),
+                ),
+                itemCount: categories.length,
               ),
             ),
             const SizedBox(height: 32),
